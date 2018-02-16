@@ -1,10 +1,82 @@
-# Beer Song
+require 'minitest/autorun'
+require 'minitest/pride'
+require_relative 'beer_song'
 
-Recite the lyrics to that beloved classic, that field-trip favorite: 99 Bottles of Beer on the Wall.
+class BeerSongTest < Minitest::Test
+  def test_first_generic_verse
+    expected = <<-TEXT
+99 bottles of beer on the wall, 99 bottles of beer.
+Take one down and pass it around, 98 bottles of beer on the wall.
+TEXT
+    assert_equal expected, BeerSong.new.verse(99)
+  end
 
-Note that not all verses are identical.
+  def test_last_generic_verse
+    skip
+    expected = <<-TEXT
+3 bottles of beer on the wall, 3 bottles of beer.
+Take one down and pass it around, 2 bottles of beer on the wall.
+TEXT
+    assert_equal expected, BeerSong.new.verse(3)
+  end
 
-```text
+  def test_verse_2
+    skip
+    expected = <<-TEXT
+2 bottles of beer on the wall, 2 bottles of beer.
+Take one down and pass it around, 1 bottle of beer on the wall.
+TEXT
+    assert_equal expected, BeerSong.new.verse(2)
+  end
+
+  def test_verse_1
+    skip
+    expected = <<-TEXT
+1 bottle of beer on the wall, 1 bottle of beer.
+Take it down and pass it around, no more bottles of beer on the wall.
+TEXT
+    assert_equal expected, BeerSong.new.verse(1)
+  end
+
+  def test_verse_0
+    skip
+    expected = <<-TEXT
+No more bottles of beer on the wall, no more bottles of beer.
+Go to the store and buy some more, 99 bottles of beer on the wall.
+TEXT
+    assert_equal expected, BeerSong.new.verse(0)
+  end
+
+  def test_first_two_verses
+    skip
+    expected = <<-TEXT
+99 bottles of beer on the wall, 99 bottles of beer.
+Take one down and pass it around, 98 bottles of beer on the wall.
+
+98 bottles of beer on the wall, 98 bottles of beer.
+Take one down and pass it around, 97 bottles of beer on the wall.
+TEXT
+    assert_equal expected, BeerSong.new.verses(99, 98)
+  end
+
+  def test_last_three_verses
+    skip
+    expected = <<-TEXT
+2 bottles of beer on the wall, 2 bottles of beer.
+Take one down and pass it around, 1 bottle of beer on the wall.
+
+1 bottle of beer on the wall, 1 bottle of beer.
+Take it down and pass it around, no more bottles of beer on the wall.
+
+No more bottles of beer on the wall, no more bottles of beer.
+Go to the store and buy some more, 99 bottles of beer on the wall.
+TEXT
+    assert_equal expected, BeerSong.new.verses(2, 0)
+  end
+
+  def test_all_verses
+    skip
+    expected = <<-TEXT
 99 bottles of beer on the wall, 99 bottles of beer.
 Take one down and pass it around, 98 bottles of beer on the wall.
 
@@ -304,66 +376,8 @@ Take it down and pass it around, no more bottles of beer on the wall.
 
 No more bottles of beer on the wall, no more bottles of beer.
 Go to the store and buy some more, 99 bottles of beer on the wall.
-```
-
-## Objectives
-
-Did you get the tests passing and the code clean? If you want to, these
-are some additional things you could try:
-
-* Remove as much duplication as you possibly can.
-* Optimize for readability, even if it means introducing duplication.
-* If you've removed all the duplication, do you have a lot of
-  conditionals? Try replacing the conditionals with polymorphism, if it
-  applies in this language. How readable is it?
-
-## Running Tests
-
-For running the tests provided, you will need the Minitest gem. Open a
-terminal window and run the following command to install minitest:
-
-```sh
-$ gem install minitest
-```
-
-Run the tests from the exercise directory using the following command:
-
-```sh
-$ ruby beer_song_test.rb
-```
-
-## Installing Ruby
-
-Ruby requires a little setup to get running locally. Follow these steps:
-
-1. Install a Ruby version manager:
-
-```sh
-$ brew install rbenv
-```
-
-2. Set up rbenv to manage your ruby versions. Run `rbenv init` and follow the
-prompts.
-
-3. Install a version of Ruby:
-
-```sh
-$ rbenv install 2.3.3
-```
-
-4. Set that version as default
-
-```sh
-$ rbenv global 2.3.0
-```
-
-5. Reload your terminal. (Open a new tab or window)
-
-6. Confirm the Ruby install was successful. In a new terminal session:
-
-```sh
-$ rbenv global
-```
-
-Should return `2.3.0`
+TEXT
+    assert_equal expected, BeerSong.new.verses(99, 0)
+  end
+end
 
